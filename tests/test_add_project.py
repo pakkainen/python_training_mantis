@@ -7,9 +7,9 @@ def random_value():
     return ''.join(random.choices(string.ascii_letters, k=8))
 
 
-def test_add_project(app):
+def test_add_project(app, json_projects):
+    new_project = json_projects
     old_project_list = app.project.get_project_list()
-    new_project = Project(name=random_value(), description=random_value())
     app.project.create_project(new_project)
     new_project_list = app.project.get_project_list()
     assert len(old_project_list) + 1 == len(new_project_list)
